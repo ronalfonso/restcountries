@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const {getPlaceCountry, getPlaceCountries} = require('../models/country');
-const Countries = require("request");
 
 
 app.get('/country/:name', async (req, res) => {
