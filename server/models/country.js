@@ -38,9 +38,7 @@ exports.getPlaceCountries = function(countries, callback) {
             var countrydUrl = countries;
             countrydUrl = countrydUrl.toLowerCase();
             Countries.get('https://restcountries.eu/rest/v2/name/' + countrydUrl, (err, resp, prueba) => {
-                if(error) {
-                    reject (error);
-                }
+                if (err) return res.status(500).send(err.message);
                 var country = [];
                 var obj = JSON.parse(prueba);
                 obj.map(function({name, altSpellings, capital, region, flag}){

@@ -3,6 +3,8 @@ require('./config/config');
 const express = require('express');
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 const bodyParser = require('body-parser');
 
 // parse application/x-www-form-urlencoded
@@ -13,6 +15,6 @@ app.use(bodyParser.json());
 
 app.use( require('./routes/country'));
 
-app.listen(process.env.PORT, () => {
-    console.log(`Escuchando puerto: `, process.env.PORT);
+app.listen(port, () => {
+    console.log(`Escuchando puerto: ${port}`);
 });
