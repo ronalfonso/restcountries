@@ -32,15 +32,15 @@ exports.getPlaceCountry = function (country) {
 
 exports.getPlaceCountries = function(countries, callback) {
 
-    var prueba = countries.split(";");
+    var respu = countries.split(";");
     function getCountry(countries) {
         return new Promise(function(resolve, reject) {
             var countrydUrl = countries;
             countrydUrl = countrydUrl.toLowerCase();
-            Countries.get('https://restcountries.eu/rest/v2/name/' + countrydUrl, (err, resp, prueba) => {
+            Countries.get('https://restcountries.eu/rest/v2/name/' + countrydUrl, (err, resp, respu) => {
                 if (err) return res.status(500).send(err.message);
                 var country = [];
-                var obj = JSON.parse(prueba);
+                var obj = JSON.parse(respu);
                 obj.map(function({name, altSpellings, capital, region, flag}){
                     const objeto = {name, altSpellings, capital, region, flag};
                     country.push(objeto);
@@ -51,8 +51,8 @@ exports.getPlaceCountries = function(countries, callback) {
     }
 
     var paises = [];
-    for (var i = 0; i < prueba.length; i++) {
-        paises.push(getCountry(prueba[i]));
+    for (var i = 0; i < respu.length; i++) {
+        paises.push(getCountry(respu[i]));
     }
     Promise.all(paises).then(function(results) {
         callback(results);

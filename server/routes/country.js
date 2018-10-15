@@ -18,7 +18,6 @@ app.get('/countries/:search', (req, res) => {
 
     try {
         getPlaceCountries(req.params.search, (response) => {
-            // console.log(response);
             res.send(response)
         });
     } catch (e) {
